@@ -1,9 +1,11 @@
 import { Circle, makeScene2D } from "@motion-canvas/2d";
 import {
+  Direction,
   all,
   createRef,
   range,
   sequence,
+  slideTransition,
   waitFor,
   waitUntil,
 } from "@motion-canvas/core";
@@ -17,6 +19,8 @@ export default makeScene2D(function* (view) {
 
   view.add(<SlideRule ref={slideRule} scale={1} />);
 
+  yield* slideTransition(Direction.Left);
+
   yield* slideRule().moveSlide(2, 2);
   yield* waitFor(1);
   yield* all(slideRule().moveSlide(3, 2), slideRule().scale(4, 2));
@@ -25,7 +29,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("1");
   yield* sequence(
     1,
-    ...range(10).map((i) => slideRule().pointTo(i + 1, 12 - i))
+    ...range(10).map((i) => slideRule().pointToC(i + 1, 12 - i))
     // slideRule().pointTo(3, 2),
     // slideRule().pointTo(4, 2),
     // slideRule().pointTo(5, 2)
