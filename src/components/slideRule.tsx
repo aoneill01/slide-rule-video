@@ -18,16 +18,18 @@ import {
   createSignal,
   waitFor,
 } from "@motion-canvas/core";
+import { colorScheme } from "../colorScheme";
 
 export interface SlideRuleProps extends NodeProps {
   slidePosition?: SignalValue<number>;
 }
 
-const ruleColor = "#eec93e";
-const secondaryRuleColor = "#f29748";
+const ruleColor = colorScheme.yellow;
+const secondaryRuleColor = colorScheme.orange;
 const cursorColor = "#bdbebf";
-const lineColor = "#2f1b19";
-const pointerColor = "#ea449d";
+const lineColor = colorScheme.black;
+const pointerColor = colorScheme.pink;
+const roundedCorner = 10;
 
 export class SlideRule extends Node {
   @initial(1)
@@ -75,26 +77,41 @@ export class SlideRule extends Node {
           radius={20}
           ref={this.cursorParts[1]}
         />
-        <Rect y={-98} fill="#615626" size={[1920, 100]} radius={5}></Rect>
-        <Rect y={98} fill="#615626" size={[1920, 100]} radius={5}></Rect>
+        <Rect
+          y={-98}
+          fill={lineColor}
+          size={[1920, 100]}
+          radius={roundedCorner}
+        ></Rect>
+        <Rect
+          y={98}
+          fill={lineColor}
+          size={[1920, 100]}
+          radius={roundedCorner}
+        ></Rect>
         <Rect
           y={-100}
           fill={this.bodyColor}
           size={[1920, 100]}
-          radius={5}
+          radius={roundedCorner}
         ></Rect>
         <Rect
           ref={this.slide}
           fill={this.slideColor}
           size={[1920, 99]}
           x={this.cScaleOffset}
-          radius={5}
+          radius={roundedCorner}
         >
           <Layout ref={this.cScale} opacity={0}>
             {[...generateCdLines("C", false)]}
           </Layout>
         </Rect>
-        <Rect y={100} fill={this.bodyColor} size={[1920, 100]} radius={5}>
+        <Rect
+          y={100}
+          fill={this.bodyColor}
+          size={[1920, 100]}
+          radius={roundedCorner}
+        >
           <Layout ref={this.dScale} opacity={0}>
             {[...generateCdLines("D", true)]}
           </Layout>
@@ -104,14 +121,14 @@ export class SlideRule extends Node {
           x={-1920 / 2 + 70 / 2}
           fill={secondaryRuleColor}
           size={[70, 100]}
-          radius={5}
+          radius={roundedCorner}
         />
         <Rect
           y={100}
           x={-1920 / 2 + 70 / 2}
           fill={secondaryRuleColor}
           size={[70, 100]}
-          radius={5}
+          radius={roundedCorner}
         />
         <Rect
           x={1920 / 2 - 70 / 2 - 40 / 2}
@@ -123,14 +140,14 @@ export class SlideRule extends Node {
           x={1920 / 2 - 70 / 2}
           fill={secondaryRuleColor}
           size={[70, 100]}
-          radius={5}
+          radius={roundedCorner}
         />
         <Rect
           y={100}
           x={1920 / 2 - 70 / 2}
           fill={secondaryRuleColor}
           size={[70, 100]}
-          radius={5}
+          radius={roundedCorner}
         />
         <Rect
           x={-1920 / 2 + 70 / 2 + 40 / 2}
