@@ -52,7 +52,7 @@
 
 Before electronic calculators were widely available, slide rules were frequently used to quickly estimate many different mathematical operations. Slide rules came in various shapes and sizes. But how do they work?
 
-Before we perform some calculations, let's look at the parts of a slide rule. There is the body and the slide. Each slide rule has several scales, marking divisions used for calculations. We will only be looking at the C and D scales today. There is also a cursor that is helpful for some calculations. We won't be using that either.
+Before we perform some calculations, let's look at the parts of a slide rule. There is the body and the slide. Each slide rule has several scales, marking divisions used for calculations. We will only be looking at the C and D scales today. There is also a cursor that is helpful for some calculations, which we won't be using either.
 
 Now we need to know how to read the scales. The C and D scales have primary markings of 1, 2, 3, 4, 5, 6, 7, 8, 9, and another 1 on the right. There is a larger division between 2 and 3, so that would be 2.5. There are 4 slightly shorter lines creating 5 divisions between 2 and 2.5, so those represent 1-tenth increments. Likewise, the smallest lines here represent 2 hundredths. So this point here would be 2.18. Depending on the length of the slide rule, there may be more or less divisions. This slide rule even has room for extra labels between 1 and 2. The smallest divisions here represent 1 hundredth. For example, this would be 1.64.
 

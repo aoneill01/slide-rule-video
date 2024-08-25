@@ -1,5 +1,10 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "intro-done",
+      "targetTime": 13.550840169680955
+    }
+  ],
   "seed": 3210421674
 }

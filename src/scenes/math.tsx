@@ -1,4 +1,12 @@
-import { Img, Layout, Line, Txt, is, makeScene2D } from "@motion-canvas/2d";
+import {
+  Img,
+  Latex,
+  Layout,
+  Line,
+  Txt,
+  is,
+  makeScene2D,
+} from "@motion-canvas/2d";
 import {
   all,
   createRef,
@@ -6,6 +14,7 @@ import {
   range,
   sequence,
   waitFor,
+  waitUntil,
 } from "@motion-canvas/core";
 
 import background from "../../public/background-plain.svg";
@@ -15,6 +24,8 @@ export default makeScene2D(function* (view) {
   const numberLine = createRef<Layout>();
   const a = createRef<Layout>();
   const b = createRef<Layout>();
+  const eq1 = createRef<Latex>();
+  const eq2 = createRef<Latex>();
   const numberLineColor = colorScheme.white;
 
   view.add(
@@ -96,6 +107,22 @@ export default makeScene2D(function* (view) {
           fontSize={48}
         />
       </Layout>
+      <Latex
+        tex="log(x) + log(y) = log(x \cdot y)"
+        fill={colorScheme.white}
+        fontSize={92}
+        y={-400}
+        opacity={0}
+        ref={eq1}
+      />
+      <Latex
+        tex="log(x) - log(y) = log(\frac{x}{y})"
+        fill={colorScheme.white}
+        fontSize={92}
+        y={-200}
+        opacity={0}
+        ref={eq2}
+      />
     </>
   );
 
@@ -124,6 +151,10 @@ export default makeScene2D(function* (view) {
   logMarkings.forEach((marking) => numberLine().add(marking));
   yield* fadeTransition(1);
 
+  yield* waitUntil("eq1");
+  yield* eq1().opacity(1, 0.5);
+
+  yield* waitUntil("number-line");
   yield* all(
     ...logMarkings.map((layout, i) =>
       layout.x(toPosition(Math.log10(i + 1)), 1)
@@ -135,10 +166,14 @@ export default makeScene2D(function* (view) {
     ...logMarkings.map((layout) => layout.findFirst(is(Txt)).opacity(1, 1))
   );
 
+  yield* waitUntil("add-a-b");
   yield* sequence(0.2, ...[a, b].map((value) => value().opacity(1, 1)));
   yield* all(b().x(toPosition(Math.log10(2)), 2), b().y(220, 2));
 
-  yield* waitFor(3);
+  yield* waitUntil("eq2");
+  yield* eq2().opacity(1, 0.5);
+
+  yield* waitUntil("math-done");
 });
 
 function toPosition(x: number): number {

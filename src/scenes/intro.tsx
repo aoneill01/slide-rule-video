@@ -24,12 +24,12 @@ export default makeScene2D(function* (view) {
 
   img().scale(0.9).x(70).y(140).rotation(2);
 
-  yield* all(img().scale(0.4, 1), img().y(0, 1));
+  yield* all(img().scale(0.4, 9), img().y(0, 9));
 
   for (const frame of frames) {
     img().src(frame);
-    yield* waitFor(0.2);
+    yield* waitFor(0.4);
   }
 
-  yield* waitFor(1);
+  yield* waitUntil("intro-done");
 });
